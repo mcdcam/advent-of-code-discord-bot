@@ -1,0 +1,4 @@
+DISCORD_TOKEN="abcd"
+AOC_LB_URL="https://adventofcode.com/2024/leaderboard/private/view/1234"
+AOC_SESSION_TOKEN="efgh"
+LB_CACHE_TTL=300

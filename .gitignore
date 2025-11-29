@@ -1,0 +1,7 @@
+.browser_data
+.venv
+.env
+log.txt
+cache
+fetched_images
+__pycache__

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Advent of Code Charts</title>
+        <style>
+            /* simulate aoc website */
+            body {
+                background: #0f0f23; /*337 x 5*/
+                color: #cccccc;
+                font-family: "Source Code Pro", monospace;
+                font-size: 14pt;
+                min-width: 60em;
+            }
+            a {
+                text-decoration: none;
+                color: #009900;
+            }
+            a:hover, a.active {
+                color: #99ff99;
+            }
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/app.css">
+    </head>
+    <body>
+        <header style="margin-bottom: 20px;">
+            <div class="user">Jeroen Heijmans <a href="/2022/support" class="supporter-badge" title="Advent of Code Supporter">(AoC++)</a> <a href="https://example.org" target="_blank" class="sponsor-badge" title="Member of sponsor: Example">(Sponsor)</a> <span class="star-count">14*</span></div>
+        </header>
+        <div style="background: rgba(0,0,0,0.2); border: 1px solid gray; color: rgba(204, 204, 204,0.8); height: 200px; padding: 40px; text-align: center; margin-bottom: 10px;">
+            Regular AoC website content comes first.
+            <br>
+            This is just a placeholder for that content.
+            <br><br>
+            Choose testing with leaderboard:
+            <br>
+            <a class="switcher" href="/?default">[Default]</a>
+            <a class="switcher" href="/?empty">[Empty]</a>
+            <a class="switcher" href="/?oneDay">[One Day]</a>
+            <a class="switcher" href="/?regular">[Regular]</a>
+            <a class="switcher" href="/?large">[Large]</a>
+            <br><br>
+            The plugin content always sits below
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.1.2/chart.umd.js" integrity="sha512-t41WshQCxr9T3SWH3DBZoDnAT9gfVLtQS+NKO60fdAwScoB37rXtdxT/oKe986G0BFnP4mtGzXxuYpHrMoMJLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-adapter-moment/1.0.1/chartjs-adapter-moment.min.js" integrity="sha512-hVy4KxCKgnXi2ok7rlnlPma4JHXI1VPQeempoaclV1GwRHrDeaiuS1pI6DVldaj5oh6Opy2XJ2CTljQLPkaMrQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            [...document.querySelectorAll(".switcher")].forEach(a => !a.href.includes(window.location.search) || a.classList.add("active"));
+            const tag = document.createElement("script");
+            let leaderboard = window.location.search.replace("?", "") || "default";
+            tag.src = `js/dummyData-${leaderboard}.js`;
+            tag.onload = () => {
+                const app = document.createElement("script");
+                app.src = "js/app.js";
+                document.body.appendChild(app);
+            };
+            document.body.appendChild(tag);
+        </script>
+        <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script> 
+    </body>
+</html>

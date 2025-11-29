@@ -1,0 +1,29 @@
+{
+  "name": "advent-of-code-charts",
+  "description": "Adhoc solution for Advent of Code leaderboard charts",
+  "scripts": {
+    "start": "npm-run-all --parallel serve watch",
+    "serve": "serve src/.",
+    "watch": "livereload src/."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeroenheijmans/advent-of-code-charts.git"
+  },
+  "author": "Jeroen Heijmans",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeroenheijmans/advent-of-code-charts/issues"
+  },
+  "homepage": "https://github.com/jeroenheijmans/advent-of-code-charts#readme",
+  "dependencies": {
+    "chart.js": "4.4.6",
+    "chartjs-adapter-moment": "1.0.1",
+    "moment": "2.30.1"
+  },
+  "devDependencies": {
+    "livereload": "0.9.3",
+    "npm-run-all": "4.1.5",
+    "serve": "14.2.4"
+  }
+}
