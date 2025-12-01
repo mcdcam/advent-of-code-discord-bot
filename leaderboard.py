@@ -37,16 +37,6 @@ async def fetch_images(ctx=None):
                     f"--load-extension={pathToExtension}"
                 ]
             )
-        
-            await context.add_cookies([{
-                "name": "session",
-                "value": config["AOC_SESSION_TOKEN"],
-                "domain": ".adventofcode.com",
-                "path": "/",
-                "httpOnly": True,
-                "secure": True
-            }])
-
             page = await context.new_page()
             await page.goto(config["AOC_LB_URL"])
 
@@ -62,8 +52,23 @@ async def fetch_images(ctx=None):
             info(f"Loaded: {await page.title()}")
         
             # LB
-            await page.locator("article > form").screenshot(path="./fetched_images/leaderboard.png")
+            top_box = await page.locator("article > div.privboard-row:has(> span.privboard-days)").bounding_box()
+            bottom_box = await page.locator("article > div.privboard-row").last.bounding_box()
+
+            top_y = top_box["y"]
+            left_x = top_box["x"]
+            right_x = top_box["x"] + top_box["width"]
+            bottom_y = bottom_box["y"] + bottom_box["height"]
+
+            page_clip = {
+                "width": right_x - left_x,
+                "height": bottom_y - top_y,
+                "x": left_x + await page.evaluate("window.scrollX"),
+                "y": top_y + await page.evaluate("window.scrollY"),
+            }
+            await page.screenshot(path="./fetched_images/leaderboard.png", full_page=True, clip=page_clip)
             info("Got leaderboard")
+
             # Podium
             await page.locator("#aoc-extension-medals > table").screenshot(path="./fetched_images/podium.png")
             info("Got podium")
